@@ -30,7 +30,8 @@ public class Ventana extends JFrame {
         panelNav.setBackground(new Color(44, 62, 80));
         JButton btnNueva = new JButton("Nueva Reservación");
         JButton btnLista = new JButton("Lista de Huéspedes");
-        
+
+        //Parte asignada a Guillermo
         //Agregar un listener para cambiar entre paneles si usas CardLayout
         
         panelNav.add(btnNueva);
@@ -52,7 +53,8 @@ public class Ventana extends JFrame {
 
         comboHabitacion = new JComboBox<>(new String[]{"Piso 1 - Jardín", "Piso 2 - Mar", "Piso 3 - VIP"});
         comboHabitacion.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
-        
+
+        // Parte asignada a: Tania Elias
         // Agregar un ActionListener a 'comboHabitacion' para cambiar la imagen
         // comboHabitacion.addActionListener(e -> { ... });
 
@@ -105,9 +107,11 @@ public class Ventana extends JFrame {
         JButton btnRegistrar = new JButton("Registrar");
         btnCalcular.setMnemonic(KeyEvent.VK_C);
 
+        //Parte asignada a: Luis Torres
         // Agregar el evento para calcular el costo
         // btnCalcular.addActionListener(e -> { llamar a metodo calcular });
 
+        // Parte asignada a: Karol
         // Agregar el evento para guardar en la tabla
         // btnRegistrar.addActionListener(e -> { llamar a metodo guardar });
 
@@ -125,11 +129,13 @@ public class Ventana extends JFrame {
 
     // --- MÉTODOS PARA RELLENAR ---
 
+    //Parte asignada a: Luis Torres
     private void calcularCosto() {
         // Aquí debes usar if/else para checar qué RadioButton está seleccionado
         // y sumar los Checkboxes
     }
 
+    // Parte asignada a: Santiago Chacon
     private void registrarReserva() {
         // Aquí debes obtener el texto de txtNombre y los datos de los componentes
         // para agregarlos a un DefaultTableModel
