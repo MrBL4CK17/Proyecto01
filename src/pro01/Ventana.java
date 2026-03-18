@@ -109,7 +109,7 @@ public class Ventana extends JFrame {
 
         //Parte asignada a: Luis Torres
         // Agregar el evento para calcular el costo
-        // btnCalcular.addActionListener(e -> { llamar a metodo calcular });
+        btnCalcular.addActionListener(e -> calcularCosto());
 
         // Parte asignada a: Karol
         // Agregar el evento para guardar en la tabla
@@ -133,6 +133,71 @@ public class Ventana extends JFrame {
     private void calcularCosto() {
         // Aquí debes usar if/else para checar qué RadioButton está seleccionado
         // y sumar los Checkboxes
+    costoTotal = 0;
+    String resumen = "";
+
+    // Nombre huesped
+    resumen = resumen + "Huésped: " + txtNombre.getText() + "\n";
+    
+    //Ubicacion
+    int seleccion = comboHabitacion.getSelectedIndex();
+    
+    if(seleccion==0){
+        costoTotal = costoTotal + 200;
+        resumen = resumen + "Ubicacion; Jardin: 200\n";
+    }
+    if(seleccion==1){
+        costoTotal = costoTotal + 500;
+        resumen = resumen + "Ubicacion; Mar: 500\n";
+    }
+    if(seleccion==2){
+        costoTotal = costoTotal + 1500;
+        resumen = resumen + "Ubicacion; VIP: 1500\n";
+    }
+    
+
+    // Tipo de habitación
+    if (rbSencilla.isSelected()) {
+        costoTotal = costoTotal + 500;
+        resumen = resumen + "Habitación Sencilla: 500\n";
+    }
+    if (rbDoble.isSelected()) {
+        costoTotal = costoTotal + 800;
+        resumen = resumen + "Habitación Doble: 800\n";
+    }
+    if (rbSuite.isSelected()) {
+        costoTotal = costoTotal + 2500;
+        resumen = resumen + "Habitación Suite: 2500\n";
+    }
+    if (rbPresidencial.isSelected()) {
+        costoTotal = costoTotal + 5000;
+        resumen = resumen + "Habitación Presidencial: 5000\n";
+    }
+
+    // Servicios
+    if (cbDesayuno.isSelected()) {
+        costoTotal = costoTotal + 350;
+        resumen = resumen + "Desayuno Buffet: 350\n";
+    }
+    if (cbWifi.isSelected()) {
+        costoTotal = costoTotal + 100;
+        resumen = resumen + "WiFi Premium: 100\n";
+    }
+    if (cbSpa.isSelected()) {
+        costoTotal = costoTotal + 600;
+        resumen = resumen + "Acceso al Spa: 600\n";
+    }
+    if (cbTransporte.isSelected()) {
+        costoTotal = costoTotal + 400;
+        resumen = resumen + "Transporte Aeropuerto: 400\n";
+    }
+
+    // Resultados
+    resumen = resumen + "Total: " + costoTotal + " MXN";
+
+    
+    areaResumen.setText(resumen);
+    lblCosto.setText("Total: " + costoTotal + " MXN");
     }
 
     // Parte asignada a: Santiago Chacon
