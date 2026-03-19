@@ -16,6 +16,8 @@ public class Ventana extends JFrame {
     private JTextField txtNombre;
     private JLabel lblCosto, lblImagenUbicacion; 
     private double costoTotal = 0;
+    private DefaultTableModel modeloTabla;
+    private JTable tablaHuespedes;
 
     public Ventana() {
         super("Hotel Grand Horizon - Practica de Eventos");
@@ -113,7 +115,11 @@ public class Ventana extends JFrame {
 
         // Parte asignada a: Karol
         // Agregar el evento para guardar en la tabla
-        // btnRegistrar.addActionListener(e -> { llamar a metodo guardar });
+        btnRegistrar.addActionListener(e -> {
+            registrarReserva();
+            txtNombre.setText(""); 
+            txtNombre.requestFocus();
+        });
 
         panelBtns.add(btnCalcular);
         panelBtns.add(btnRegistrar);
@@ -204,5 +210,36 @@ public class Ventana extends JFrame {
     private void registrarReserva() {
         // Aquí debes obtener el texto de txtNombre y los datos de los componentes
         // para agregarlos a un DefaultTableModel
+
+        // Parte asignada a: Santiago Chacon
+        
+    // Obtener los datos de los componentes
+    String nombre = txtNombre.getText().trim();
+    String ubicacion = comboHabitacion.getSelectedItem().toString();
+    
+    // Obtenemos el costo y limpiamos el texto "Total: " para dejar solo el número
+    String costo = lblCosto.getText().replace("Total: ", ""); 
+
+    //  Determinar qué tipo de habitación se seleccionó
+    String tipo = "";
+    if (rbSencilla.isSelected()) tipo = "Sencilla";
+    else if (rbDoble.isSelected()) tipo = "Doble";
+    else if (rbSuite.isSelected()) tipo = "Suite";
+    else if (rbPresidencial.isSelected()) tipo = "Presidencial";
+
+    //  Validación de seguridad: si el nombre está vacío, no registra nada
+    if (nombre.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese el nombre del huésped.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    //  agregamos la tabla (Aquí se usa la variable global que creamos)
+    Object[] nuevaFila = {nombre, tipo, ubicacion, costo};
+    modeloTabla.addRow(nuevaFila);
+
+//final
+    JOptionPane.showMessageDialog(this, "Reservación registrada para: " + nombre);
+    txtNombre.setText(""); 
+}
     }
 }
