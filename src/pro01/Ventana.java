@@ -63,6 +63,8 @@ public class Ventana extends JFrame {
         // Agregar un ActionListener a 'comboHabitacion' para cambiar la imagen
         // comboHabitacion.addActionListener(e -> { ... });
 
+        comboHabitacion.addActionListener(e -> actualizarImaUbi());
+        
         lblImagenUbicacion = new JLabel("Imagen aquí");
         lblImagenUbicacion.setPreferredSize(new Dimension(150, 100));
         lblImagenUbicacion.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -138,6 +140,30 @@ public class Ventana extends JFrame {
     }
 
     // --- MÉTODOS PARA RELLENAR ---
+ private void actualizarImaUbi() {
+    // Obtenemos el índice de la opción seleccionada (0, 1 o 2)
+    int seleccion = comboHabitacion.getSelectedIndex();
+    // Verificamos que el índice sea válido dentro de nuestro arreglo de iconos
+    if (seleccion >= 0 && seleccion < iconUbi.length) {
+        lblImagenUbicacion.setIcon(iconUbi[seleccion]);
+        // Usamos el tamaño que definiste (150x100)
+        int ancho = 150; 
+        int alto = 100;
+        // Convertimos el icono original a uno escalado
+        ImageIcon iconoEscalado = redimensionarIcono((ImageIcon) iconUbi[seleccion], ancho, alto);
+        // Lo ponemos en el JLabel
+        lblImagenUbicacion.setIcon(iconoEscalado);
+    }
+  }      
+    private ImageIcon redimensionarIcono(ImageIcon iconOriginal, int ancho, int alto) {
+    // Extraemos la imagen del icono
+    Image img = iconOriginal.getImage();
+    // se usa SCALE_SMOOTH para que no pierda calidad
+    Image nuevaImg = img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH); 
+    // Devolvemos la imagen ya pequeñita metida en un nuevo ImageIcon
+    return new ImageIcon(nuevaImg);
+ }
+    
 
     //Parte asignada a: Luis Torres
     private void calcularCosto() {
