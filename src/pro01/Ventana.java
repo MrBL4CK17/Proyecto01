@@ -26,6 +26,9 @@ public class Ventana extends JFrame {
 
     private void inicializarComponentes() {
         setLayout(new BorderLayout(10, 10));
+        String[] columnas = {"Nombre", "Tipo", "Ubicación", "Costo"};
+        modeloTabla = new DefaultTableModel(columnas, 0);
+        tablaHuespedes = new JTable(modeloTabla);
 
         // --- PANEL SUPERIOR ---
         JPanel panelNav = new JPanel(new FlowLayout(FlowLayout.CENTER));
