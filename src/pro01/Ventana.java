@@ -19,6 +19,16 @@ public class Ventana extends JFrame {
     private DefaultTableModel modeloTabla;
     private JTable tablaHuespedes;
 
+    private String nombresUbi[]={
+        "jardin.jpg","mar.jpg", "vip.jpg"
+         };
+   
+    private Icon iconUbi[]={
+        new ImageIcon(getClass().getResource(nombresUbi[0])),
+        new ImageIcon(getClass().getResource(nombresUbi[1])),
+        new ImageIcon(getClass().getResource(nombresUbi[2])),
+    };
+
     public Ventana() {
         super("Hotel Grand Horizon - Practica de Eventos");
         inicializarComponentes();
