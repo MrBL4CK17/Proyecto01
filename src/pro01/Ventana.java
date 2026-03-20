@@ -65,7 +65,7 @@ public class Ventana extends JFrame {
 
         comboHabitacion.addActionListener(e -> actualizarImaUbi());
         
-        lblImagenUbicacion = new JLabel("Imagen aquí");
+        lblImagenUbicacion = new JLabel(iconUbi[0]);
         lblImagenUbicacion.setPreferredSize(new Dimension(150, 100));
         lblImagenUbicacion.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblImagenUbicacion.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
