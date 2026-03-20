@@ -18,6 +18,8 @@ public class Ventana extends JFrame {
     private double costoTotal = 0;
     private DefaultTableModel modeloTabla;
     private JTable tablaHuespedes;
+    private JPanel panelContenedorCards;
+    private CardLayout cardLayout;
 
     private String nombresUbi[]={
         "jardin.jpg","mar.jpg", "vip.jpg"
@@ -41,13 +43,22 @@ public class Ventana extends JFrame {
         tablaHuespedes = new JTable(modeloTabla);
 
         // --- PANEL SUPERIOR ---
+        //Parte asignada a Guillermo
+        //Agregar un listener para cambiar entre paneles si usas CardLayout
+        cardLayout = new CardLayout();
+        panelContenedorCards = new JPanel(cardLayout);
+
         JPanel panelNav = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panelNav.setBackground(new Color(44, 62, 80));
         JButton btnNueva = new JButton("Nueva Reservación");
         JButton btnLista = new JButton("Lista de Huéspedes");
 
-        //Parte asignada a Guillermo
-        //Agregar un listener para cambiar entre paneles si usas CardLayout
+        btnNueva.addActionListener(e -> cardLayout.show(panelContenedorCards, "REGISTRO"));
+        btnLista.addActionListener(e -> cardLayout.show(panelContenedorCards, "TABLA"));
+        
+        panelNav.add(btnNueva);
+        panelNav.add(btnLista);
+        add(panelNav, BorderLayout.NORTH);
         
         panelNav.add(btnNueva);
         panelNav.add(btnLista);
@@ -147,6 +158,19 @@ public class Ventana extends JFrame {
         add(pContenedor, BorderLayout.CENTER);
         panelCentral.add(panelIzq);
         panelCentral.add(panelDer);
+
+        JPanel pRegistro = new JPanel(new BorderLayout(10,10));
+        pRegistro.add(panelCentral, BorderLayout.CENTER);
+        pRegistro.add(panelBtns, BorderLayout.SOUTH);
+
+        JPanel pTabla = new JPanel(new BorderLayout());
+        pTabla.add(new JScrollPane(tablaHuespedes), BorderLayout.CENTER);
+
+        panelContenedorCards.add(pRegistro, "REGISTRO");
+        panelContenedorCards.add(pTabla, "TABLA");
+
+        add(panelContenedorCards, BorderLayout.CENTER);
+        
     }
 
     // --- MÉTODOS PARA RELLENAR ---
@@ -276,6 +300,5 @@ public class Ventana extends JFrame {
     // 5. Mensaje de éxito y limpieza del campo
     JOptionPane.showMessageDialog(this, "Reservación registrada para: " + nombre);
     txtNombre.setText(""); 
-}
     }
 }
