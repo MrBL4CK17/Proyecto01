@@ -51,6 +51,8 @@ public class Ventana extends JFrame {
         panelNav.setBackground(new Color(44, 62, 80));
         JButton btnNueva = new JButton("Nueva Reservación");
         JButton btnLista = new JButton("Lista de Huéspedes");
+        aplicarEstiloBoton(btnNueva, "calendar.png"); 
+        aplicarEstiloBoton(btnLista, "table.png");
 
         btnNueva.addActionListener(e -> cardLayout.show(panelContenedorCards, "REGISTRO"));
         btnLista.addActionListener(e -> cardLayout.show(panelContenedorCards, "TABLA"));
@@ -152,8 +154,11 @@ cbTransporte.setOpaque(false);
 
         // Botones de acción
         JPanel panelBtns = new JPanel(new FlowLayout());
+        panelBtns.setBackground(new Color(44, 62, 80));
         JButton btnCalcular = new JButton("Calcular (Alt+C)");
         JButton btnRegistrar = new JButton("Registrar");
+        aplicarEstiloBoton(btnCalcular, "calculator.png"); 
+        aplicarEstiloBoton(btnRegistrar, "register.png");
         btnCalcular.setMnemonic(KeyEvent.VK_C);
 
         //Parte asignada a: Luis Torres
@@ -233,6 +238,47 @@ private void aplicarEstiloRadio(JRadioButton rb) {
         }
     });
      }
+
+    private void aplicarEstiloBoton(JButton btn, String rutaImagenNormal) {
+        btn.setFocusPainted(false);
+        btn.setBorderPainted(false);
+        btn.setContentAreaFilled(false);
+        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        btn.setForeground(Color.WHITE);
+
+        Color colorNormal = new Color(52, 152, 219);
+        Color colorHover = new Color(41, 128, 185); 
+        Color colorPresionado = new Color(31, 97, 141); 
+
+        ImageIcon iconoFondo = new ImageIcon(getClass().getResource(rutaImagenNormal));
+        Image imgEscalada = iconoFondo.getImage().getScaledInstance(120, 35, Image.SCALE_SMOOTH);
+        btn.setIcon(new ImageIcon(imgEscalada));
+        btn.setHorizontalTextPosition(SwingConstants.CENTER); 
+
+        btn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                btn.setBackground(colorHover);
+                btn.setOpaque(true);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                btn.setOpaque(false);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                btn.setBackground(colorPresionado);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                btn.setBackground(colorHover);
+            }
+        });
+    }
     // --- MÉTODOS PARA RELLENAR ---
  private void actualizarImaUbi() {
     // Obtenemos el índice de la opción seleccionada (0, 1 o 2)
