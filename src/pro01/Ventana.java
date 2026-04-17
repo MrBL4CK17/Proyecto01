@@ -5,6 +5,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import com.guillermo.lib.GuilleCore;
 
 public class Ventana extends JFrame {
     // Componentes globales para acceder a ellos desde las funciones
@@ -395,16 +396,17 @@ private void aplicarEstiloRadio(JRadioButton rb) {
     else if (rbPresidencial.isSelected()) tipo = "Presidencial";
 
     // 3. Validación de seguridad: si el nombre está vacío, no registra nada
-    if (nombre.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor, ingrese el nombre del huésped.", "Error", JOptionPane.ERROR_MESSAGE);
+    if (GuilleCore.esNuloVacio(nombre)) {
+        GuilleCore.msgError("Por favor, ingrese el nombre del huésped.");
         return;
     }
     // 4. AGREGAR A LA TABLA (Aquí se usa la variable global que creamos)
     Object[] nuevaFila = {nombre, tipo, ubicacion, costo};
+    GuilleCore.guardarLog("reservas_hotel.txt", "Registro: " + nombre + " | Tipo: " + tipo + " | Total: $" + costoTotal);
     modeloTabla.addRow(nuevaFila);
 
     // 5. Mensaje de éxito y limpieza del campo
-    JOptionPane.showMessageDialog(this, "Reservación registrada para: " + nombre);
+    GuilleCore.msgExito("Reservación registrada con éxito para: " + nombre);
     txtNombre.setText(""); 
     }
 }
