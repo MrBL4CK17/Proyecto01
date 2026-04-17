@@ -95,10 +95,10 @@ public class Ventana extends JFrame {
         rbSuite = new JRadioButton("Suite");
         rbPresidencial = new JRadioButton("Presidencial");
         ButtonGroup grupoHab = new ButtonGroup();
-        aplicarEstiloAvanzadoRadio(rbSencilla);
-        aplicarEstiloAvanzadoRadio(rbDoble);
-        aplicarEstiloAvanzadoRadio(rbSuite);
-        aplicarEstiloAvanzadoRadio(rbPresidencial);
+        aplicarEstiloRadio(rbSencilla);
+        aplicarEstiloRadio(rbDoble);
+        aplicarEstiloRadio(rbSuite);
+        aplicarEstiloRadio(rbPresidencial);
 
         cbDesayuno = new JCheckBox("Desayuno Buffet");
         cbWifi = new JCheckBox("WiFi Premium");
