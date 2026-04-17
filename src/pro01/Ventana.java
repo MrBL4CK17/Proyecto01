@@ -101,9 +101,28 @@ public class Ventana extends JFrame {
         aplicarEstiloRadio(rbPresidencial);
 
         cbDesayuno = new JCheckBox("Desayuno Buffet");
-        cbWifi = new JCheckBox("WiFi Premium");
-        cbSpa = new JCheckBox("Acceso al Spa");
-        cbTransporte = new JCheckBox("Transporte Aeropuerto");
+cbDesayuno.setFont(new Font("Segoe UI", Font.BOLD, 12));
+cbDesayuno.setForeground(new Color(100, 62, 80)); // Un azul oscuro/grisaceo para que resalte
+cbDesayuno.setCursor(new Cursor(Cursor.HAND_CURSOR));
+cbDesayuno.setOpaque(false); // para la ejecucion para que sea  transparente
+
+cbWifi = new JCheckBox("WiFi Premium");
+cbWifi.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+cbWifi.setForeground(new Color(100, 62, 80));
+cbWifi.setCursor(new Cursor(Cursor.HAND_CURSOR));
+cbWifi.setOpaque(false);
+
+cbSpa = new JCheckBox("Acceso al Spa");
+cbSpa.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+cbSpa.setForeground(new Color(100, 62, 80));
+cbSpa.setCursor(new Cursor(Cursor.HAND_CURSOR));
+cbSpa.setOpaque(false);
+
+cbTransporte = new JCheckBox("Transporte Aeropuerto");
+cbTransporte.setFont(new Font("Segoe UI", Font.ROMAN_BASELINE, 12));
+cbTransporte.setForeground(new Color(100, 62, 80));
+cbTransporte.setCursor(new Cursor(Cursor.HAND_CURSOR));
+cbTransporte.setOpaque(false);
 
         panelIzq.add(new JLabel("Nombre del Huésped:"));
         panelIzq.add(txtNombre);
