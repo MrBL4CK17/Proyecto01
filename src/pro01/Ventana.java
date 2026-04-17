@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Ventana extends JFrame {
-
     // Componentes globales para acceder a ellos desde las funciones
     private JComboBox<String> comboHabitacion;
     private JRadioButton rbSencilla, rbDoble, rbSuite, rbPresidencial;
@@ -96,7 +95,10 @@ public class Ventana extends JFrame {
         rbSuite = new JRadioButton("Suite");
         rbPresidencial = new JRadioButton("Presidencial");
         ButtonGroup grupoHab = new ButtonGroup();
-        grupoHab.add(rbSencilla); grupoHab.add(rbDoble); grupoHab.add(rbSuite); grupoHab.add(rbPresidencial);
+        aplicarEstiloAvanzadoRadio(rbSencilla);
+        aplicarEstiloAvanzadoRadio(rbDoble);
+        aplicarEstiloAvanzadoRadio(rbSuite);
+        aplicarEstiloAvanzadoRadio(rbPresidencial);
 
         cbDesayuno = new JCheckBox("Desayuno Buffet");
         cbWifi = new JCheckBox("WiFi Premium");
@@ -173,6 +175,45 @@ public class Ventana extends JFrame {
         
     }
 
+private void aplicarEstiloRadio(JRadioButton rb) {
+    // ESTILO BASE (No seleccionado)
+    rb.setFont(new Font("Segoe UI", Font.BOLD, 14));
+    rb.setForeground(Color.BLACK); // Texto negro por defecto
+    rb.setBackground(new Color(52, 152, 219)); // El mismo azul del panel
+    rb.setOpaque(false); // Hacerlo transparente para usar el fondo del panel
+    rb.setFocusPainted(false);
+    rb.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    rb.setMargin(new Insets(5, 10, 5, 10)); // Espaciado interno para el recuadro
+
+    
+    rb.addItemListener(new ItemListener() {
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            // Obtenemos el texto base sin flecha para manipularlo
+            String textBase = rb.getText().replace("> ", "").trim();
+
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                // ESTILO PARA CUANDO ESTÁ SELECCIONADO
+                rb.setText("> " + textBase.toUpperCase()); // Mayúsculas y flecha
+                rb.setOpaque(true); // Hacerlo sólido para que se vea el color
+                rb.setBackground(new Color(169, 50, 38)); // Recuadro terracotta
+                rb.setForeground(Color.WHITE); // Texto blanco para contraste
+                
+                // Añadimos un borde especial: una línea dorada fina y espaciado
+                rb.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(212, 175, 55), 1), // Línea dorada
+                    BorderFactory.createEmptyBorder(5, 10, 5, 10) // Padding interno
+                ));
+            } else {
+                // ESTILO PARA CUANDO DEJA DE ESTAR SELECCIONADO (Vuelve al base)
+                rb.setText(textBase.toLowerCase()); // Minúsculas, sin flecha
+                rb.setOpaque(false); // Volver a ser transparente
+                rb.setForeground(Color.BLACK); // Volver a texto negro
+                rb.setBorder(null); // Quitar el borde especial
+            }
+        }
+    });
+    
     // --- MÉTODOS PARA RELLENAR ---
  private void actualizarImaUbi() {
     // Obtenemos el índice de la opción seleccionada (0, 1 o 2)
