@@ -232,7 +232,7 @@ private void aplicarEstiloRadio(JRadioButton rb) {
             }
         }
     });
-    
+     }
     // --- MÉTODOS PARA RELLENAR ---
  private void actualizarImaUbi() {
     // Obtenemos el índice de la opción seleccionada (0, 1 o 2)
